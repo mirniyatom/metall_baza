@@ -1,1 +1,2 @@
 "# metall_baza" 
+"# journal" 
