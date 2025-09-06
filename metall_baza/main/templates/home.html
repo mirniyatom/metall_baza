@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Metal Baza — Bosh sahifa{% endblock %}
+{% block content %}
+<section class="pt-24 pb-8">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div class="space-y-6">
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+          Premium metall <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-cyan-500">mahsulotlari</span>
+        </h1>
+        <p class="text-lg text-slate-600 dark:text-slate-300">
+          Truba, list, burchak, shveller, armatura va ko'proq. Kalkulyator, narx so'rash,
+          logistika va tezkor aloqa — barchasi bir joyda.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="{% url 'page' 'products' %}" class="px-5 py-3 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white shadow-glow">Mahsulotlar</a>
+          <a href="{% url 'page' 'calc' %}" class="px-5 py-3 rounded-2xl bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/50 dark:border-slate-700 glass">Kalkulyator</a>
+        </div>
+        <dl class="grid grid-cols-3 gap-4 pt-4">
+          <div><dt class="text-2xl font-bold">500+</dt><dd class="text-sm opacity-70">SKU</dd></div>
+          <div><dt class="text-2xl font-bold">24 soat</dt><dd class="text-sm opacity-70">Tez narx</dd></div>
+          <div><dt class="text-2xl font-bold">UZB bo'ylab</dt><dd class="text-sm opacity-70">Yetkazib berish</dd></div>
+        </dl>
+      </div>
+      <div class="relative">
+        <div class="glass rounded-3xl p-1 shadow-2xl">
+          <img alt="Metal assortment" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%235883ff'/%3E%3Cstop offset='1' stop-color='%2300c2d1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='%23121a2c'/%3E%3Cg fill='none' stroke='url(%23g)' stroke-width='4' opacity='.9'%3E%3Crect x='80' y='80' width='320' height='180' rx='18'/%3E%3Crect x='440' y='120' width='320' height='180' rx='18'/%3E%3Crect x='220' y='320' width='320' height='180' rx='18'/%3E%3Crect x='680' y='300' width='340' height='220' rx='18'/%3E%3C/g%3E%3C/svg%3E" class="rounded-3xl w-full h-auto"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-6">Mashhur kategoriyalar</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for cat in categories %}
+      <a href="{% url 'page' 'products' %}?category={{ cat.slug }}" class="group block rounded-2xl p-6 glass hover:shadow-xl transition">
+        <div class="flex items-center gap-3">
+          <div class="p-3 rounded-xl bg-brand-600/10 text-brand-700 dark:text-brand-300">
+            {{ cat.icon|safe }}
+          </div>
+          <div>
+            <div class="font-semibold text-lg">{{ cat.name }}</div>
+            <div class="text-sm opacity-70">{{ cat.desc }}</div>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

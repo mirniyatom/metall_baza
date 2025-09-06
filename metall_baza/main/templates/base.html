@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Metal Baza — Sifatli Metall Mahsulotlari{% endblock %}</title>
+  <meta name="description" content="Metal Baza — prokat, truba, list, burchak, I-balkalar. Tez kalkulyator, arzon narxlar, yetkazib berish.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef7ff',
+              100: '#d9edff',
+              200: '#b3daff',
+              300: '#85c2ff',
+              400: '#58a3ff',
+              500: '#2b82ff',
+              600: '#1c63db',
+              700: '#174db1',
+              800: '#173f8c',
+              900: '#163771',
+            }
+          },
+          boxShadow: {
+            glow: '0 10px 25px -5px rgb(37 99 235 / 0.35), 0 8px 10px -6px rgb(37 99 235 / 0.25)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass { backdrop-filter: blur(10px); background: linear-gradient(135deg, rgba(255,255,255,.65), rgba(255,255,255,.25)); }
+    @media (prefers-color-scheme: dark) {
+      .glass { background: linear-gradient(135deg, rgba(30,41,59,.65), rgba(30,41,59,.25)); }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 text-slate-800 dark:from-slate-950 dark:to-slate-900 dark:text-slate-100">
+  <!-- Background FX -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 overflow-hidden">
+    <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-30 bg-brand-400 dark:bg-brand-700"></div>
+    <div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-30 bg-cyan-300 dark:bg-cyan-700"></div>
+  </div>
+
+  {% include "components/navbar.html" %}
+
+  <main class="relative z-10">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "components/footer.html" %}
+
+  <script src="{% static 'js/app.js' %}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

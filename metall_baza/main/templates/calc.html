@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Metal Kalkulyator — Vazn va Narx{% endblock %}
+{% block content %}
+<section class="pt-24 pb-10">
+  <div class="container mx-auto px-4 max-w-5xl">
+    <h1 class="text-3xl font-bold mb-6">Kalkulyator</h1>
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-4">
+        <div class="rounded-2xl p-5 glass border border-slate-200/60 dark:border-slate-700">
+          <form id="calc-form" class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <label class="block">
+                <span class="text-sm">Shakl</span>
+                <select id="shape" class="mt-1 w-full px-3 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80">
+                  <option value="sheet">List / Plastina</option>
+                  <option value="round">Aylana sterjen (Bar)</option>
+                  <option value="pipe">Quvur (Pipe)</option>
+                  <option value="angle">Burchak (Angle)</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="text-sm">Zichlik (kg/m³)</span>
+                <input id="density" type="number" value="7850" step="1" class="mt-1 w-full px-3 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80" />
+              </label>
+            </div>
+
+            <div id="dims" class="grid sm:grid-cols-2 gap-4"></div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <label class="block">
+                <span class="text-sm">Narx (so'm/kg)</span>
+                <input id="price" type="number" step="100" value="12000" class="mt-1 w-full px-3 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80" />
+              </label>
+              <label class="block">
+                <span class="text-sm">Miqdor</span>
+                <input id="qty" type="number" step="1" value="1" class="mt-1 w-full px-3 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80" />
+              </label>
+            </div>
+
+            <div class="pt-2 flex gap-3">
+              <button type="button" id="calc-btn" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white">Hisobla</button>
+              <button type="reset" id="reset-btn" class="px-5 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700">Tozalash</button>
+            </div>
+          </form>
+        </div>
+        
+        <div class="rounded-2xl p-5 bg-white/80 dark:bg-slate-800/70 glass border border-slate-200/60 dark:border-slate-700">
+          <h2 class="font-semibold mb-3">Natija</h2>
+          <div class="grid sm:grid-cols-3 gap-4 text-center">
+            <div class="rounded-xl p-4 bg-slate-50/80 dark:bg-slate-900/40">
+              <div class="text-sm opacity-70">Bir dona og'irligi</div>
+              <div id="weight" class="text-2xl font-bold">0 kg</div>
+            </div>
+            <div class="rounded-xl p-4 bg-slate-50/80 dark:bg-slate-900/40">
+              <div class="text-sm opacity-70">Jami og'irlik</div>
+              <div id="totalWeight" class="text-2xl font-bold">0 kg</div>
+            </div>
+            <div class="rounded-xl p-4 bg-slate-50/80 dark:bg-slate-900/40">
+              <div class="text-sm opacity-70">Umumiy narx</div>
+              <div id="totalPrice" class="text-2xl font-bold">0 so'm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="space-y-4">
+        <div class="rounded-2xl p-5 glass border border-slate-200/60 dark:border-slate-700">
+          <div class="font-semibold mb-2">Tez sozlamalar</div>
+          <div class="flex flex-wrap gap-2">
+            <button data-prefill="sheet" class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900">List 2x1000x2000</button>
+            <button data-prefill="round" class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900">Sterjen ⌀20x6m</button>
+            <button data-prefill="pipe" class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900">Truba 60x3x6m</button>
+            <button data-prefill="angle" class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900">Burchak 50x50x5x6m</button>
+          </div>
+        </div>
+        <div class="rounded-2xl p-5 bg-gradient-to-br from-brand-600 to-cyan-600 text-white shadow-glow">
+          <div class="text-lg font-semibold">Savollar bormi?</div>
+          <p class="opacity-90">Operator bilan bog'laning: +998 (90) 123‑45‑67</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/calc.js' %}"></script>
+{% endblock %}

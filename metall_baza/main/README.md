@@ -1,3 +1,23 @@
+# Metal Baza — Frontend (Django + Tailwind)
+
+## O'rnatish
+1) Ushbu `templates/` va `static/` papkalarni `main/` aplikatsiyangiz ichiga nusxa ko'chiring:
+   - `main/templates/...`
+   - `main/static/js/app.js`, `main/static/js/calc.js`
+
+2) URLlar (`main/urls.py`):
+```py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('<slug:page>/', views.page, name='page'),
+]
+```
+
+3) Viewlar (`main/views.py`) namunasi:
+```py
 from django.shortcuts import render
 from django.http import Http404
 
@@ -26,3 +46,8 @@ def page(request, page):
     if page in ('about','production','logistics','contact'):
         return render(request, f'{page}.html')
     raise Http404()
+```
+
+4) `settings.py` da `APP_DIRS=True` va `STATIC_URL='static/'` ekanini tekshiring.
+
+> Eslatma: HTML fayllarni **to'g'ridan‑to'g'ri** brauzerga ochmang (`file://`). Ular Django templating orqali render bo'lishi kerak.
